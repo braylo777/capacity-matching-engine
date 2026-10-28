@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capacity Reservation & Matching Engine</title>
+<style>body{font:14px/1.5 system-ui,sans-serif;margin:0;background:#0b0f17;color:#e6e9ef}main{max-width:1050px;margin:auto;padding:24px}.muted{color:#8b93a7}table{width:100%;border-collapse:collapse}td,th{padding:5px 8px;border-bottom:1px solid #222a3a;text-align:left}.card{background:#121826;border:1px solid #222a3a;border-radius:10px;padding:16px;margin:14px 0}input,select{background:#0b0f17;color:#e6e9ef;border:1px solid #333c52;border-radius:6px;padding:4px;width:80px}button{background:#4f8cff;color:#fff;border:0;border-radius:6px;padding:5px 10px;cursor:pointer}pre{white-space:pre-wrap;font-size:12px;color:#b8c0d4}a{color:#4f8cff}</style></head><body><main>
+<h1>Capacity Reservation &amp; Matching Engine</h1><p class="muted">GPU-hour capacity market with a double-entry ledger. Runs entirely in your browser; providers and balances are sample data. <a href="https://github.com/braylo777/capacity-matching-engine">Source &amp; property tests</a></p>
+<div class="card"><h3>Place a bid</h3>
+Buyer <select id="buyer"><option>acme</option><option>labs</option></select> SKU <select id="sku"><option>H100</option><option>A100</option><option>H200</option></select>
+GPUs <input id="gpus" value="12"> start h <input id="start" value="0"> hours <input id="hours" value="24"> max $/GPU-h <input id="max" value="2.40"> <button id="bid">Match</button> <span id="msg" class="muted"></span></div>
+<div class="card"><h3>Offer book</h3><table id="offers"></table></div>
+<div class="card"><h3>Reservations</h3><table id="res"></table><p class="muted">Deliver: escrow → provider (minus 3% platform fee). Cancel before start: 90% refunded, 10% to provider.</p></div>
+<div class="card"><h3>Ledger</h3><table id="bal"></table><h4>Journal (last 12)</h4><pre id="journal"></pre></div>
+</main><script src="/app.js"></script></body></html>

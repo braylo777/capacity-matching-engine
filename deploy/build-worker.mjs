@@ -1,0 +1,11 @@
+import { build } from "esbuild";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+mkdirSync("dist", { recursive: true });
+const r = await build({ entryPoints: ["web/app.ts"], bundle: true, minify: true, format: "iife", write: false });
+const js = r.outputFiles[0].text, html = readFileSync("web/index.html", "utf8");
+writeFileSync("dist/worker.js", `const H=${JSON.stringify(html)};const J=${JSON.stringify(js)};
+export default{async fetch(q){const p=new URL(q.url).pathname;
+if(p==="/")return new Response(H,{headers:{"content-type":"text/html; charset=utf-8","content-security-policy":"default-src 'self'; style-src 'unsafe-inline'"}});
+if(p==="/app.js")return new Response(J,{headers:{"content-type":"application/javascript"}});
+return new Response("not found",{status:404})}};`);
+console.log("built", js.length);

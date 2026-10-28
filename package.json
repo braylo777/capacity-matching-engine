@@ -1,0 +1,8 @@
+{
+  "name": "capacity-matching-engine",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": { "test": "vitest run", "build": "node deploy/build-worker.mjs" },
+  "devDependencies": { "vitest": "^3.2.4", "fast-check": "^4.3.0", "esbuild": "^0.25.0", "typescript": "^5.9.0" }
+}
